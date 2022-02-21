@@ -10,7 +10,6 @@ function Subtotal() {
         renderText={(value) => (
           <>
             <p>
-             
               Subtotal ({0} items): <strong>{value}</strong>
             </p>
             <small className="subtotal__gift">
