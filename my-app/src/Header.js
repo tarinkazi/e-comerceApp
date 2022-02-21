@@ -2,13 +2,17 @@ import React from "react";
 import './Header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import { a } from "@material-ui/core";
 
 function Header() {
   return (
     <div className="header">
+      <a href="/">
       <img className="header_logo"
       src="https://i.pinimg.com/originals/47/b7/bd/47b7bdac4285ee24654ca7d68cf06351.png" 
       />
+      </a>
+      
       <div
         className='header_search'>
           <input
@@ -34,13 +38,13 @@ function Header() {
             <span className="header_optionLineTwo">Priem</span>
         </div>
 
+      <a href="/checkout">
         <div className="header_optionBasket">
           <ShoppingBasketIcon />
           <span className="header_optionLineTwo header_BasketCount">0</span>
-
-
-
         </div>
+      </a>
+        <a href ="/about">About</a>
 
       </div>
     </div>
