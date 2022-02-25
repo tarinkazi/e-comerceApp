@@ -25,24 +25,24 @@ function Payment(){
 
   const handleChange = (e) => {
     setdisabled(e.empty);
-   // setError(e.error ? e.error.message : "");
+   setError(e.error ? e.error.message : "");
   };
 
   const handleSubmit =async (e) => {
       e.preventDefault();
-     // setProcessing(true);
-      // const payload = await stripe.confirmCardPayment(clientSecret, {
-      //   payment_method: {
-      //     card: elements.getElement(CardElement)
-      //   }
-      //  })
-      //  .then(({patmentIntent}) =>{
-      //   setSucceeded(true)
-      //   setError(null)
-      //   setProcessing(false)
-      //   ///////////
-      //   navigate('/');
-      }
+     setProcessing(true);
+      const payload = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement)
+        }
+       }).then(({paymentIntent}) =>{
+        setSucceeded(true)
+          setError(null)
+          setProcessing(false)
+          navigate('/');
+       })
+      
+    }
  
   return(
     <div className="payment">
