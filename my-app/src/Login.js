@@ -28,7 +28,7 @@ function Login() {
                
                 if (auth) {
                   navigate('/')
-                    console.log(auth);
+                    //console.log(auth);
                 }
             })
             .catch(error => alert(error.message))
