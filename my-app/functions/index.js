@@ -1,38 +1,40 @@
 const functions = require("firebase-functions");
 const express = require("express");
-const cors =require("cors");
-const { request, response } = require("express");
-const stripe = require("stripe")("sk_test_51KEpeQAQJmyoEYMDL6CtfzmeVezA7RO9W31G7W65nIqSrFhxxinW1QNNPB6Eb6KSEoFBNf9GJnClrgjhYcDpzGLv00wV6Hyje3");
-//Api
+const cors = require("cors");
+const stripe = require("stripe")(
+  "sk_test_51KEpeQAQJmyoEYMDL6CtfzmeVezA7RO9W31G7W65nIqSrFhxxinW1QNNPB6Eb6KSEoFBNf9GJnClrgjhYcDpzGLv00wV6Hyje3"
+);
 
-//app config
+// API
+
+// - App config
 const app = express();
 
-
-//MiddleWare
-app.use(cors({origin: true}));
+// - Middlewares
+app.use(cors({ origin: true }));
 app.use(express.json());
 
+// - API routes
+app.get("/", (request, response) => response.status(200).send("hello world"));
 
-//API Routes
-app.get('/',(request, response) => response.status(200).send("Hello Worls"));
-app.post('/payments/create', async (request, response) => {
-    const total = request.query.total;
+app.post("/payments/create", async (request, response) => {
+  const total = request.query.total;
 
-    console.log("Payments request received>>",total);
+  console.log("Payment Request Recieved BOOM!!! for this amount >>> ", total);
 
-    const paymentIntent = await stripe.paymentIntent.create({
-      amount: total,
-      currency: "usd",
-    })
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: total, // subunits of the currency
+    currency: "usd",
+  });
 
-    response.status(201).send({
-      clientSecret: paymentIntent.client_secret,
-    })
-})
+  // OK - Created
+  response.status(201).send({
+    clientSecret: paymentIntent.client_secret,
+  });
+});
 
-
-//Listen Command
-//(http://localhost:5001/challenge-e932f/us-central1/api).
-
+// - Listen command
 exports.api = functions.https.onRequest(app);
+
+// Example endpoint
+// http://localhost:5001/challenge-4b2b2/us-central1/api
