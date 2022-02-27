@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import "../LoginComponent/Login.css";
+import '../LoginComponent/Login.css';
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
+
 
 function Login() {
   const navigate = useNavigate();
