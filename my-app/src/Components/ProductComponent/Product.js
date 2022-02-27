@@ -1,6 +1,6 @@
 import React from "react";
 import '../ProductComponent/Product';
-import {useStateValue} from "../../StateProvider";
+import {useStateValue} from "../../Helper/StateProvider";
 
 function Product({id, title, image, price, rating}){
   const [{basket}, dispatch] = useStateValue();

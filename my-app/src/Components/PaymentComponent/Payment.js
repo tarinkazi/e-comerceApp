@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Payment.css";
-import { useStateValue } from "../../StateProvider";
+import { useStateValue } from "../../Helper/StateProvider";
 import CheckoutProduct from "../CheckoutComponent/ChectoutProduct";
 import Checkout from '../CheckoutComponent/Checkout';
 import { Link, Navigate } from "react-router-dom";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
-import {getBasketTotal} from '../../reducer';
+import {getBasketTotal} from '../../Helper/reducer';
 import axios from '../../axios'
 import {useNavigate } from "react-router-dom";
 
