@@ -28,6 +28,18 @@ function Payment(){
    setError(e.error ? e.error.message : "");
   };
 
+  useEffect(() => {
+   const getclientSecret = async () => {
+      const response = await axios({
+        method: 'post',
+        url: `/payments/create?total=${getBasketTotal(basket) * 100}`
+      });
+      setclientSecret(response.data.clientSecret
+        )
+   }
+   getclientSecret();
+  }, [basket])
+
   const handleSubmit =async (e) => {
       e.preventDefault();
      setProcessing(true);
@@ -39,7 +51,7 @@ function Payment(){
         setSucceeded(true)
           setError(null)
           setProcessing(false)
-          navigate('/');
+          navigate('/orders');
        })
       
     }
