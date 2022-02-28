@@ -1,24 +1,24 @@
 import React from "react";
-import '../ProductComponent/Product.css';
-import {useStateValue} from "../../Helper/StateProvider";
+import "../ProductComponent/Product.css";
+import { useStateValue } from "../../Helper/StateProvider";
 
-function Product({id, title, image, price, rating}){
-  const [{basket}, dispatch] = useStateValue();
- //console.log("This is the basket>>>",basket)
-  const addToBasket =() =>{
+function Product({ id, title, image, price, rating }) {
+  const [{ basket }, dispatch] = useStateValue();
+  //console.log("This is the basket>>>",basket)
+  const addToBasket = () => {
     //dispatch the item into the datalayer
     dispatch({
-      type:"Add_To_Basket",
+      type: "Add_To_Basket",
       item: {
-        id:id,
-        title:title,
-        image:image,
-        price:price,
-        rating:rating,
+        id: id,
+        title: title,
+        image: image,
+        price: price,
+        rating: rating,
       },
-    })
-  }
-  return(
+    });
+  };
+  return (
     <div className="product">
       <div className="product_info">
         <p>{title}</p>
@@ -27,22 +27,18 @@ function Product({id, title, image, price, rating}){
           <strong>{price}</strong>
         </p>
         <div className="product_rating">
-        {Array(rating)
+          {Array(rating)
             .fill()
             .map((_, i) => (
               <p>🌟</p>
             ))}
         </div>
       </div>
-      <img className="home_image"             src= {image}
-          alt=""
-        />
+      <img className="home_image" src={image} alt="" />
 
       <button onClick={addToBasket}>Add a Basket</button>
-
     </div>
-  )
-
+  );
 }
 
 export default Product;

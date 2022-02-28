@@ -4,17 +4,16 @@ import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../Helper/StateProvider";
-import {auth} from '../../firebase';
+import { auth } from "../../firebase";
 
 function Header() {
-  const [{ basket, user}, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
 
-  const handleAuthentication =() => {
-    if(user) {
+  const handleAuthentication = () => {
+    if (user) {
       auth.signOut();
-    }  
-    
-  }
+    }
+  };
   return (
     <div className="header">
       <Link to="/">
@@ -32,23 +31,27 @@ function Header() {
       <div className="header_nav">
         <Link to={!user && "/login"}>
           <div onClick={handleAuthentication} className="header_option">
-            <span className="header_optionLineOne">Hello {user? user.email:'Guest'} </span>
-            <span className="header_optionLineTwo">{user? 'Sign out':'Sign In'}</span>
+            <span className="header_optionLineOne">
+              Hello {user ? user.email : "Guest"}{" "}
+            </span>
+            <span className="header_optionLineTwo">
+              {user ? "Sign out" : "Sign In"}
+            </span>
           </div>
         </Link>
 
-        <Link to ="/orders">
-        <div className="header_option">
-          <span className="header_optionLineOne">Returns</span>
-          <span className="header_optionLineTwo">& Orders</span>
-        </div>
+        <Link to="/orders">
+          <div className="header_option">
+            <span className="header_optionLineOne">Returns</span>
+            <span className="header_optionLineTwo">& Orders</span>
+          </div>
         </Link>
 
-    <Link to ="/about">
-        <div className="header_option">
-          <span className="header_optionLineOne">your</span>
-          <span className="header_optionLineTwo">Prime</span>
-        </div>
+        <Link to="/about">
+          <div className="header_option">
+            <span className="header_optionLineOne">your</span>
+            <span className="header_optionLineTwo">Prime</span>
+          </div>
         </Link>
 
         <Link to="/checkout">
@@ -59,8 +62,6 @@ function Header() {
             </span>
           </div>
         </Link>
-
-        
       </div>
     </div>
   );
