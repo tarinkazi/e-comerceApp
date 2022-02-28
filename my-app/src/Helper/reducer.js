@@ -7,6 +7,12 @@ export const initialState = {
 export const getBasketTotal = (basket) =>
   basket?.reduce((amount, item) => item.price + amount, 0);
 
+  export const getBasketTotalWithTax = function(v){
+    let val =getBasketTotal(v);
+    let total =val*0.13+val;
+    return total;
+  }
+
 const reducer = (state, action) => {
   // console.log(action)
   switch (action.type) {

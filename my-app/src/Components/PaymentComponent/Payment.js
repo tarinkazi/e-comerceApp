@@ -5,7 +5,7 @@ import CheckoutProduct from "../ProductComponent/CheckoutProduct";
 import { Link, useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
-import { getBasketTotal } from "../../Helper/reducer";
+import { getBasketTotal,getBasketTotalWithTax } from "../../Helper/reducer";
 import axios from "../../axios";
 import { db } from "../../firebase";
 
@@ -23,6 +23,9 @@ function Payment() {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(true);
 
+  const getTotal=function(value){
+    let totaol=value+value*0.13;
+  }
   useEffect(() => {
     // generate the special stripe secret which allows us to charge a customer
     const getClientSecret = async () => {
@@ -134,9 +137,9 @@ function Payment() {
 
               <div className="payment__priceContainer">
                 <CurrencyFormat
-                  renderText={(value) => <h3>Order Total: {value}</h3>}
+                  renderText={(value) => <h3>Order Total with Tax: {value}</h3>}
                   decimalScale={2}
-                  value={getBasketTotal(basket)}
+                  value={getBasketTotalWithTax(basket)}
                   displayType={"text"}
                   thousandSeparator={true}
                   prefix={"$"}
